@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "CS Ext",
+  "version": "0.0.1",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "webRequest",
+    "tabs",
+    "windows",
+    "webNavigation",
+    "tabCapture",
+    "contextMenus"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "content_scripts": []
+}
