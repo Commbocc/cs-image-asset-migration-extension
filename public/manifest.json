@@ -12,7 +12,8 @@
     "windows",
     "webNavigation",
     "tabCapture",
-    "contextMenus"
+    "contextMenus",
+    "identity"
   ],
   "host_permissions": ["<all_urls>"],
   "action": {

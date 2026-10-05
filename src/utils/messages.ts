@@ -3,6 +3,13 @@ type Messages = {
     request: any;
     response: any;
   };
+  CONTENTSTACK_LOGIN: {
+    request: undefined;
+    response: {
+      ok: boolean;
+      error?: string;
+    };
+  };
 };
 
 type Message = {
