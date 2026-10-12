@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useContentstackClient } from "@/composables/contentstack-client";
 import { useAppSettings } from "@/composables/settings";
+import { useToast } from "@nuxt/ui/composables";
 import { useAsyncState } from "@vueuse/core";
 
 const props = defineProps<{

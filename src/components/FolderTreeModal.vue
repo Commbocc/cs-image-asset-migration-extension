@@ -61,6 +61,10 @@ async function handleSelect(item: AssetFolderTreeItem) {
   settings.value.folderName = item.label ?? "";
 }
 
+function handleTreeEvent(_event: unknown, item: AssetFolderTreeItem) {
+  return loadChildren(item);
+}
+
 onMounted(execute);
 </script>
 
@@ -92,8 +96,8 @@ onMounted(execute);
         :items="state"
         selection-behavior="replace"
         :loading="state === null"
-        @toggle="(_, item) => loadChildren(item)"
-        @select="(_, item) => loadChildren(item)"
+        @toggle="handleTreeEvent"
+        @select="handleTreeEvent"
       >
         <template #item-leading="{ item }">
           <UCheckbox
