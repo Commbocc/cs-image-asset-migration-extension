@@ -19,6 +19,7 @@
         "@types/node": "^24.13.3",
         "@vitejs/plugin-vue": "^6.0.9",
         "@vue/tsconfig": "^0.9.1",
+        "package-json-type": "^1.1.2",
         "typescript": "~6.0.2",
         "vite": "^8.3.0",
         "vue-tsc": "^3.3.11",
@@ -681,6 +682,8 @@
     "otplib": ["otplib@12.0.1", "", { "dependencies": { "@otplib/core": "^12.0.1", "@otplib/preset-default": "^12.0.1", "@otplib/preset-v11": "^12.0.1" } }, "sha512-xDGvUOQjop7RDgxTQ+o4pOol0/3xSZzawTiPKRrHnQWAy0WjhNs/5HdIDJCrqC4MBynmjXgULc6YfioaxZeFgg=="],
 
     "oxc-walker": ["oxc-walker@1.1.1", "", { "peerDependencies": { "@oxc-project/types": ">=0.98.0", "oxc-parser": ">=0.98.0", "rolldown": ">=1.0.0" }, "optionalPeers": ["@oxc-project/types", "oxc-parser", "rolldown"] }, "sha512-Hwd7dq28zu/Er99+bpWp16CGwFrhyalJh0W3JOB7XpPvgWo3MqMi2ksWGKuzzA9zt50mJ2pIUwR5lpAdZ9ACNQ=="],
+
+    "package-json-type": ["package-json-type@1.1.2", "", {}, "sha512-QMy9vgEVIkHp/6LI0H7v6P+7ZFp0zQyPZfv8rGV/JoDhu63WMgzoQS34Pm+T0S5j/b9Zbkrx4SE8YOv2huou6Q=="],
 
     "package-manager-detector": ["package-manager-detector@1.9.0", "", {}, "sha512-zAMfbta9nPA8AKkA4WdmNAT8R8s6Dk0/xwPsqNnRidMFcLo1YkLuPDTgs2f64XdzS8vbLNnoJ+uUIkgbz7oRHA=="],
 

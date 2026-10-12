@@ -1,5 +1,5 @@
 {
-  "name": "vite-browser-ext",
+  "name": "cs-image-asset-migration-extension",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -24,6 +24,7 @@
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/tsconfig": "^0.9.1",
+    "package-json-type": "^1.1.2",
     "typescript": "~6.0.2",
     "vite": "^8.3.0",
     "vue-tsc": "^3.3.11"
