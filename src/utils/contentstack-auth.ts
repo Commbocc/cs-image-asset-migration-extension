@@ -61,8 +61,8 @@ export async function loginToContentstack(): Promise<void> {
         "cm.asset:write",
         "cm.asset:publish",
         "cm.asset:unpublish",
-        // "cm.assets.management:read",
-        // "cm.assets.management:write",
+        "cm.assets.management:read",
+        "cm.assets.management:write",
         // "cm.assets.rt:read",
         // "cm.assets.rt:write",
         // "cm.environments.management:read",
@@ -105,6 +105,7 @@ export async function loginToContentstack(): Promise<void> {
         code_verifier: verifier,
       }),
     });
+
     const tokens = (await tokenResponse.json()) as TokenResponse;
     if (!tokenResponse.ok || !tokens.access_token) {
       throw new Error(
@@ -123,7 +124,8 @@ export async function loginToContentstack(): Promise<void> {
       userUid: tokens.user_uid,
       organizationUid: tokens.organization_uid,
     };
-    await chrome.storage.local.set({
+
+    await chrome.storage.session.set({
       [CONTENTSTACK_AUTH_SESSION_KEY]: session,
     });
   } catch (cause) {

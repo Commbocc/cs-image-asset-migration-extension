@@ -1,11 +1,11 @@
 import { computed } from "vue";
-import { useState } from "@/composables/use-state";
+import { useState } from "@/composables/state";
 
 export const useTab = () => {
   const tab = useState<chrome.tabs.Tab | undefined>("tab", () => undefined);
 
   const tabUrl = computed(() =>
-    tab.value?.url ? new URL(tab.value.url) : undefined,
+    tab.value?.url ? new URL(tab.value.url) : undefined
   );
 
   const fetchActiveTab = () => {
@@ -15,7 +15,7 @@ export const useTab = () => {
         ([activeTab]) => {
           tab.value = activeTab;
           resolve(activeTab);
-        },
+        }
       );
     });
   };

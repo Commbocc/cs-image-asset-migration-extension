@@ -4,18 +4,29 @@ import {
   type ContentstackSession,
 } from "@/utils/contentstack-auth";
 import { sendMessage } from "@/utils/messages";
+import { useState } from "./state";
 
 export function useContentstackAuth() {
-  const session = ref<ContentstackSession | null>(null);
+  const session = useState<ContentstackSession | null>(
+    "contentstack-session",
+    () => null
+  );
   const isLoading = ref(false);
-  const error = ref("");
+  const error = useState("contentstack-auth-error", () => "");
   const isAuthenticated = computed(() => Boolean(session.value?.accessToken));
 
   async function loadSession() {
-    const stored = await chrome.storage.local.get<{
+    const stored = await chrome.storage.session.get<{
       [CONTENTSTACK_AUTH_SESSION_KEY]?: ContentstackSession;
     }>(CONTENTSTACK_AUTH_SESSION_KEY);
-    session.value = stored[CONTENTSTACK_AUTH_SESSION_KEY] ?? null;
+    const savedSession = stored[CONTENTSTACK_AUTH_SESSION_KEY] ?? null;
+
+    if (savedSession?.expiresAt && savedSession.expiresAt <= Date.now()) {
+      await clearExpiredSession();
+      return;
+    }
+
+    session.value = savedSession;
   }
 
   async function login() {
@@ -38,14 +49,31 @@ export function useContentstackAuth() {
   }
 
   async function logout() {
-    await chrome.storage.local.remove(CONTENTSTACK_AUTH_SESSION_KEY);
+    if (!confirm("Logout?")) return;
+    await chrome.storage.session.remove(CONTENTSTACK_AUTH_SESSION_KEY);
     session.value = null;
     error.value = "";
+    await loadSession();
   }
 
-  void loadSession().catch(() => {
+  async function clearExpiredSession() {
+    session.value = null;
+    error.value = "Your Contentstack session expired. Please sign in again.";
+    await chrome.storage.session.remove(CONTENTSTACK_AUTH_SESSION_KEY);
+  }
+
+  loadSession().catch(() => {
     error.value = "Could not load the saved Contentstack session.";
   });
 
-  return { session, isAuthenticated, isLoading, error, login, logout };
+  return {
+    loadSession,
+    session,
+    isAuthenticated,
+    isLoading,
+    error,
+    login,
+    logout,
+    clearExpiredSession,
+  };
 }
