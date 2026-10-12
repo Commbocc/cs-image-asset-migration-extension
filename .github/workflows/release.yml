@@ -24,7 +24,7 @@ jobs:
         run: bun ci
 
       - name: Build
-        run: bun run build
+        run: bun generate
 
       - name: Create ZIP
         working-directory: dist
