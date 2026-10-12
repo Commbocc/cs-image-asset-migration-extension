@@ -23,5 +23,6 @@
     "service_worker": "assets/background.js",
     "type": "module"
   },
-  "content_scripts": []
+  "content_scripts": [],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyqlwxdiZKTDO0kVBQCb6zsrpal1E8weVz33G8lz5uH5I0Ax+lC+4KHvWpt3XZ5qyVSON3C38MYZYvr63WJaOOG981cm1Zpt3U7CAM329N6I8EfcL3cOSZVfBQCZqsyxrpgVDsWb9foejAu73ixxmrpgV9kZTnNKpdSUhZFuV2eGQfKTSN2wbN12KXx5SNi7q+ViZ72LYx0nDi3JPhvSfIxa/5tUZmqkrmdUxPUdrxALRdfEQcKs1MPGD9Mo6ISu8yWV33g2M1l0b/N4wuCHtGFPlUOBNJUI8E2xRTr8+KQd4Y6ettNXVQv3Cc1v7r42QP2wNQq1GqBv90BJ5uKmvyQIDAQAB"
 }
