@@ -17,11 +17,27 @@ const { isLoading, execute } = useAsyncState(
   async () => {
     const imageResponse = await fetch(props.image.url);
     const blob = await imageResponse.blob();
+    const contentType = imageResponse.headers
+      .get("content-type")
+      ?.split(";")[0]
+      .trim()
+      .toLowerCase();
+    const mimeExtensions: Record<string, string> = {
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/svg+xml": "svg",
+    };
+    const extension = contentType?.startsWith("image/")
+      ? mimeExtensions[contentType] ?? contentType.split("/")[1].split("+")[0]
+      : undefined;
+    const filename = extension
+      ? `${props.image.filename}.${extension}`
+      : props.image.filename;
 
     const body = new FormData();
-    body.append("asset[upload]", blob, props.image.filename);
+    body.append("asset[upload]", blob, filename);
     body.append("asset[parent_uid]", settings.value.folderUid);
-    body.append("asset[title]", props.image.filename);
+    body.append("asset[title]", filename);
     body.append("asset[description]", props.image.alt);
 
     const res = await client.value("/assets", {
